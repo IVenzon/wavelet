@@ -4,19 +4,17 @@ import java.util.ArrayList;
 
 class Handler implements URLHandler {
 
+    String currentString = "";
+
     public String handleRequest(URI url) {
-        if (url.getPath().equals("/")) {
-            return "hi!";
-        }
-        else {
-            System.out.println("Path: " + url.getPath());
-            if (url.getPath().contains("/add-message")) {
-                String[] parameters = url.getQuery().split("=");
-                if (parameters[0].equals("s")) { 
-                    
-                }
+        if (url.getPath().equals("/add-message")) {
+            String[] parameters = url.getQuery().split("=");
+            if (parameters[0].equals("s")) { 
+                currentString += parameters[1] + '\n';
             }
+            return currentString;
         }
+        return currentString;
     }
 }
 
